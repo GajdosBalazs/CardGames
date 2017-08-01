@@ -65,7 +65,7 @@ public class Game {
                         default:
                             color = "Error";
                     }
-                    deck.add(new Card(color, number, j + 2, value2));
+                    deck.add(new Card(color, number, j + 2, value2, color + " " + number));
                 }
             }
         }
@@ -389,17 +389,8 @@ public class Game {
         return result;
     }
 
-    interface HandCheck {
-
-        String operation(ArrayList<Card> hand);
-    }
-
-    public boolean operate(ArrayList<Card> hand, HandCheck handCheck) {
-        return handCheck.operation(hand).equals("");
-    }
-
 //	public static void main(String[] attributes) {
-    public static String k() {
+    public String k() {
         int nrHand = 1;
         int nrDecks;
         String runUntil;
@@ -430,7 +421,7 @@ public class Game {
 //		System.out.println("RoyalFlush (9)");
 //		System.out.println("Tetszőleges szám (0)");
 //		runUntil = Communicator.getStringData("e1234567890", 1, "Hibás parancs! Próbálja újra!",false);
-        runUntil = "7";
+        runUntil = "3";
 //        if (runUntil.equals("0")) {
 //            System.out.println("Kért kezek száma? (Adjon meg egy tetszőleges, 0-tól eltérő számot!");
 //			runUntilNr = Communicator.getIntData(false);
@@ -450,7 +441,7 @@ public class Game {
             ArrayList<Card> hand = dealer(deck);
             for (Card card : hand) {
                 yourHand += card.getColor() + " " + card.getNumber() + "|";
-                cards += "<img src=\"resources/img/cards/" + card.getColor() + " " + card.getNumber() + ".png\"/>";
+                cards += "<img class=\"card\" src=\"resources/img/cards/" + card.getImage() + ".png\"/>";
             }
 
             System.out.println(yourHand);
@@ -497,14 +488,12 @@ public class Game {
                     end = false;
             }
             
-            nrHand++;
-            
             result = yourHand + "<br>" + "Best hand: " + handCheck(hand) + "<br>" + "Number of hands: " + nrHand + "<br>" + cards + "<br>" + result;
+            
+            ++nrHand;
         } while (end);
         
         System.out.println(result);
         return result;
     }
-
-
 }

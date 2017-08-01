@@ -8,20 +8,28 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
             body{
-/*                background-image: url(resources/img/home_page.jpg);*/
+                /*                background-image: url(resources/img/home_page.jpg);*/
                 background-size:100% auto;
-             }
+            }
+
+            .card{
+                background-color: white;
+                border: 1px solid;
+                border-radius: 5%;
+                margin: 10px;
+                height: 100px;
+            }
         </style>
     </head>
     <body>
         <form>
             <input type="submit" value="test" name="btn"/>
         </form>
-        
+
+        <jsp:useBean id="hand" scope="session" class="pojo.Game"/>
+
         <c:if var="e" test="${param.btn eq 'test'}">
-            <%= pojo.Game.k() %>
-            
-          
+            ${hand.k()}
         </c:if>
     </body>
 </html>
