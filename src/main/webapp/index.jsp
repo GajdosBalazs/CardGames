@@ -8,8 +8,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
             body{
-                /*                background-image: url(resources/img/home_page.jpg);*/
-                background-size:100% auto;
+                background-image: url(resources/img/background.jpg);
             }
 
             .card{
@@ -19,17 +18,28 @@
                 margin: 10px;
                 height: 100px;
             }
+            .middle{
+                background-color: rgba(100, 100, 100, 0.6);
+                text-align: center;
+                width: 30%;
+                margin: 10px auto;
+                padding: 20px;
+                
+            }
         </style>
     </head>
     <body>
-        <form>
-            <input type="submit" value="test" name="btn"/>
+        <form class="middle">
+            
+            <input  type="submit" value="Generate" name="btn"/>
         </form>
 
         <jsp:useBean id="hand" scope="session" class="pojo.Game"/>
 
-        <c:if var="e" test="${param.btn eq 'test'}">
-            ${hand.k()}
+        <c:if var="e" test="${param.btn eq 'Generate'}">
+            <div class="middle">
+                ${hand.k()}
+            </div>
         </c:if>
     </body>
 </html>
