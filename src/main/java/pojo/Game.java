@@ -390,10 +390,8 @@ public class Game {
     }
 
 //	public static void main(String[] attributes) {
-    public String k() {
+    public String k(String runUntil, int nrDecks) {
         int nrHand = 1;
-        int nrDecks;
-        String runUntil;
         int runUntilNr = 0;
         boolean end = true;
 
@@ -401,11 +399,10 @@ public class Game {
                 "Hány paklival játsszuk a játékot? (Adjon meg egy tetszőleges, 0-tól eltérő számot és üssön egy enter-t!)");
 //		nrDecks = Communicator.getIntData(false);
 
-        nrDecks = 1;
-        while (nrDecks == 0) {
-            System.out.println("Érvénytelen szám! Próbálja újra!");
+//        while (nrDecks == 0) {
+//            System.out.println("Érvénytelen szám! Próbálja újra!");
 //			nrDecks = Communicator.getIntData(false);
-        }
+//        }
 
 //		Communicator.drawLine("-_", 50);
 //		System.out.println("Meddig fusson a program?");
@@ -421,7 +418,7 @@ public class Game {
 //		System.out.println("RoyalFlush (9)");
 //		System.out.println("Tetszőleges szám (0)");
 //		runUntil = Communicator.getStringData("e1234567890", 1, "Hibás parancs! Próbálja újra!",false);
-        runUntil = "3";
+//        runUntil = "3";
 //        if (runUntil.equals("0")) {
 //            System.out.println("Kért kezek száma? (Adjon meg egy tetszőleges, 0-tól eltérő számot!");
 //			runUntilNr = Communicator.getIntData(false);
