@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="pojo.Game" %>
+<%@page import="games.HandTutorial" %>
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -73,11 +73,11 @@
             </a>
         </form>
 
-        <jsp:useBean id="hand" scope="session" class="pojo.Game"/>
+        <jsp:useBean id="handTutorial" scope="session" class="games.HandTutorial"/>
 
         <c:if var="e" test="${param.generate eq 'Generate'}">
             <div class="font middle">
-                ${hand.k(param.runUntil,param.nrDecks)}
+                ${handTutorial.runHandTutorial(param.runUntil,param.nrDecks)}
             </div>
         </c:if>
     </body>

@@ -51,7 +51,7 @@
                     <span>Hand Tutorial</span>
                 </div>
             </a>
-            <a style="text-decoration: none" href="hand_tutorial.jsp">
+            <a style="text-decoration: none" href="blackjack.jsp">
                 <div class="elem" style="background-image: url(resources/img/poker_table.png)">
                     <span>Black Jack</span>
                 </div>

@@ -2,14 +2,26 @@ package pojo;
 
 public class Card {
 
+    //count variable is to count how many of that kind of card (checking only the number not the color) is in the hand.
     private int count;
+    //the number of the card - String becouse it can be Jack/Queen/King or Ace
     private String number;
+    //value1 is the variable that shows the original value of the card
     private int value1;
+    //value2 equals value1 except in case of Ace. In case of Ace it's one lower than card 2.
     private int value2;
+    //the color of the card
     private String color;
+    //checked variable is used when counting each card's number in a hand. It prevents counting a card twice
     private boolean checked;
+    //shows if the card is still in the deck or already in a hand
     private boolean outOfDeck = false;
+    //the source of the image file of the card
     private String image;
+    //
+    final static String IMAGESOURCE = "resources/img/cards/";
+    //
+    final static String IMAGEEXTENSION = ".png";
 
     public Card(String color, String number, int value1, int value2, String image) {
         this.color = color;
