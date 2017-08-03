@@ -13,7 +13,6 @@
                 background-attachment: fixed;
                 text-align: center;
             }
-
             .card{
                 background-color: white;
                 border: 1px solid;

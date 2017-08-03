@@ -22,6 +22,8 @@ public class Card {
     final static String IMAGESOURCE = "resources/img/cards/";
     //
     final static String IMAGEEXTENSION = ".png";
+    //
+    final static String IMAGEBACKSOURCE = "resources/img/cards/card_back.png";
 
     public Card(String color, String number, int value1, int value2, String image) {
         this.color = color;
@@ -41,6 +43,18 @@ public class Card {
                 + ", checked=" + checked + ", outOfDeck=" + outOfDeck + ", count=" + count + "]";
     }
 
+    public String getIMAGESOURCE() {
+        return IMAGESOURCE;
+    }
+
+    public String getIMAGEEXTENSION() {
+        return IMAGEEXTENSION;
+    }
+
+    public String getIMAGEBACKSOURCE() {
+        return IMAGEBACKSOURCE;
+    }
+    
     public String getImage() {
         return image;
     }
