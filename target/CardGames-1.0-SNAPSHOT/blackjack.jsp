@@ -35,16 +35,11 @@
                 display:flex;
                 flex-direction: column;
                 align-content:  center;
+                
                 justify-content: center;
             }
-            div.row:nth-of-type(1) {flex-grow: 1;}
-            div.row:nth-of-type(2) {flex-grow: 3;}
-            div.row:nth-of-type(3) {flex-grow: 1;}
-            div.col:nth-of-type(1) {flex-grow: 1;}
-            div.col:nth-of-type(2) {flex-grow: 3;}
-            div.col:nth-of-type(3) {flex-grow: 1;}
+
             .row{
-                display:flex;
                 flex-direction: row;
                 align-content:  center;
                 justify-content: center;
@@ -56,10 +51,21 @@
             }
             .container,.row,.col{
                 border-style: dotted;
+                display:flex;
             }
             form{
                 border-style: dotted;
+                width: 0px;
             }
+            #dealer{
+                background-color: coral;
+                border-radius: 25px;
+                height: 100px;
+            }
+            div.container:nth-child(1) {flex-grow: 1; }
+            div.container nth-child(2) {flex-grow: 3;background-color: activeborder;}
+            div.container:nth-child(3) {flex-grow: 1;background-color: green;}
+                
         </style>
     <body>
         <c:if test="${param.start ne 'Start' || param.newGame eq 'New Game'}">
@@ -78,7 +84,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col" style="align-items:  center;">
                     <form method="POST">
                         <input ${gameStarted eq 'true' ? '' : 'style="display:none"'} type="submit" value="New Game" name="newGame"/>
                     </form>
@@ -87,6 +93,7 @@
                     <form method="POST">
                         <input ${gameStarted eq 'false' ? '' : 'style="display:none"'} type="submit" value="Start" name="start"/>
                     </form>
+                    <img id="dealer" src="resources/img/dealer_icon.png" alt=""/>
                 </div>
                 <div class="col">
                     2
@@ -96,8 +103,13 @@
                 <div class="col">
                     3
                 </div>
-                <div class="col">
-                    4
+                <div class="container col">
+                    <div class="row" style="flex-grow: 1">
+                        4a
+                    </div>
+                    <div class="row" style="flex-grow: 1">
+                        4b
+                    </div>
                 </div>
                 <div class="col">
                     2

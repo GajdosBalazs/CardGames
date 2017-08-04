@@ -1,11 +1,13 @@
 package games;
 
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import pojo.*;
 
 public class HandTutorial {
-    
+
+    //Counts each card's in the hand (checking only the number, not the color). It helps to check if the hand is pair/drill/etc...
     public static void countCards(ArrayList<Card> hand) {
         for (int i = 0; i < 5; i++) {
             for (int h = 4; h >= 0; h--) {
@@ -52,7 +54,7 @@ public class HandTutorial {
             }
         };
 
-        ArrayList<Card> sortedHand = new ArrayList<Card>(hand);
+        ArrayList<Card> sortedHand = new ArrayList<>(hand);
         sortedHand.sort(cmp);
 
         if (!isStraight(hand).equals("") & !isFlush(hand).equals("") & !sortedHand.get(0).getNumber().equals("Ace")) {
@@ -309,59 +311,76 @@ public class HandTutorial {
         return result;
     }
 
-    public String runHandTutorial(String runUntil, int nrDecks) {
+    public static String runOnce(ArrayList<Card> hand){
+        return "End";
+    }
+    
+    public String runHandTutorial(String runUntil, int nrDecks) throws Exception{
         int nrDeal = 1;
         boolean end;
         String result = "";
+        Method method = null;
+        Hand hand;
 
+        try {
+            switch (runUntil) {
+                case "e":
+                    method = HandTutorial.class.getMethod("runOnce", ArrayList.class);
+                    break;
+                case "1":
+                    method = HandTutorial.class.getMethod("isOnePair", ArrayList.class);
+                    break;
+                case "2":
+                    method = HandTutorial.class.getMethod("isTwoPair", ArrayList.class);
+                    break;
+                case "3":
+                    method = HandTutorial.class.getMethod("isSet", ArrayList.class);
+                    break;
+                case "4":
+                    method = HandTutorial.class.getMethod("isStraight", ArrayList.class);
+                    break;
+                case "5":
+                    method = HandTutorial.class.getMethod("isFlush", ArrayList.class);
+                    break;
+                case "6":
+                    method = HandTutorial.class.getMethod("isFullHouse", ArrayList.class);
+                    break;
+                case "7":
+                    method = HandTutorial.class.getMethod("isStraightFlush", ArrayList.class);
+                    break;
+                case "8":
+                    method = HandTutorial.class.getMethod("isPoker", ArrayList.class);
+                    break;
+                case "9":
+                    method = HandTutorial.class.getMethod("isRoyalFlush", ArrayList.class);
+                    break;
+                default:
+                    end = false;
+            }
+        } catch (NoSuchMethodException ex) {
+            System.out.println("error");
+        }
         do {
             String yourHand = "Your hand is: ";
             String cards = "";
             Deck deck = new Deck();
             deck.fillCardsInDeck(nrDecks);
-            Hand hand = new Hand();
+            hand = new Hand();
             hand.dealer(deck, 5);
             for (Card card : hand.getCardsInHand()) {
                 yourHand += card.getColor() + " " + card.getNumber() + "|";
                 cards += "<img class=\"card\" src=\"" + card.getImage() + "\"/>";
             }
-            switch (runUntil) {
-                case "e":
-                    end = false;
-                    break;
-                case "1":
-                    end = isOnePair(hand.getCardsInHand()).equals("");
-                    break;
-                case "2":
-                    end = isTwoPair(hand.getCardsInHand()).equals("");
-                    break;
-                case "3":
-                    end = isSet(hand.getCardsInHand()).equals("");
-                    break;
-                case "4":
-                    end = isStraight(hand.getCardsInHand()).equals("");
-                    break;
-                case "5":
-                    end = isFlush(hand.getCardsInHand()).equals("");
-                    break;
-                case "6":
-                    end = isFullHouse(hand.getCardsInHand()).equals("");
-                    break;
-                case "7":
-                    end = isStraightFlush(hand.getCardsInHand()).equals("");
-                    break;
-                case "8":
-                    end = isPoker(hand.getCardsInHand()).equals("");
-                    break;
-                case "9":
-                    end = isRoyalFlush(hand.getCardsInHand()).equals("");
-                    break;
-                default:
-                    end = false;
-            }
+
             result = yourHand + "<br>" + "Best combination: " + handCheck(hand.getCardsInHand()) + "<br>" + "Number of deals: " + nrDeal + "<br>" + cards + "<br>" + result;
+            
+            System.out.println(yourHand);
+            System.out.println("Number of deal: " + nrDeal);
+            System.out.println(handCheck(hand.getCardsInHand()));
+            
             ++nrDeal;
-        } while (end);
+        } while (method.invoke(HandTutorial.class,hand.getCardsInHand()).equals(""));
         return result;
     }
+
 }
