@@ -92,6 +92,7 @@
                 then 17, the dealer hand gets one more card.-->
         <c:if test="${showCards eq 'true' && blackJack.evalueateHand(dealerHand)<17}">
             ${dealerHand.deal(deck, 1)}
+            <c:set var="dealerHandForServlet" value="${blackJack.evalueateHand(dealerHand)}" scope="session"/>
         </c:if>
 
         <!--When the game starts (after the user pushes the "Start game" button), two variables are created,

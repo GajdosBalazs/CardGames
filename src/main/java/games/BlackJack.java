@@ -21,12 +21,10 @@ public class BlackJack {
         
         for(Card card : hand.getCardsInHand()){
             sumValue1 += card.getValue1();
-            System.out.println("val1: "+card.getValue1());
         }
         
         for(Card card : hand.getCardsInHand()){
             sumValue2 += card.getValue2();
-            System.out.println("val2: "+card.getValue2());
         }
         
         if(sumValue1-21 > sumValue2-21 && sumValue1-21<=0){
