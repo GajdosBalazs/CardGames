@@ -25,7 +25,7 @@ public class Deck {
     }
 
     // Generates the to be used deck (it may contain more then 1 deck). Fills the cardsInDeck ArrayList with cards.
-    public void fillCardsInDeck(int nrOfDecks) {
+    public void fillCardsInDeck(int nrOfDecks, String gameType) {
 
         //Generates cards based on the number of decks (given as parameter) * 4 color * 13 number (2 to Ace)
         // number of decks
@@ -35,6 +35,7 @@ public class Deck {
                 // number of numbers
                 for (int j = 0; j < 13; j++) {
                     String color;
+                    int value1;
                     int value2;
                     String number;
                     String image;
@@ -61,8 +62,35 @@ public class Deck {
                         }
                     }
 
-                    // Initialize value2 -> it equals to the value1 except in case of Ace
-                    value2 = j == 12 ? 1 : j + 2;
+                    // Initialize value1 based on the game type
+                    if(gameType.equals("poker")){
+                        value1 = j+2;
+                    }else if(gameType.equals("blackJack")){
+                        if(j<9){
+                            value1=j+2;
+                        }else if(j<12){
+                            value1=10;
+                        }else{
+                            value1=11;  
+                        }
+                    }else{
+                        value1=j+2;
+                    }
+
+                    // Initialize value2 based on the game type
+                    if(gameType.equals("poker")){
+                        value2 = j == 12 ? 1 : j + 2;
+                    }else if(gameType.equals("blackJack")){
+                        if(j<9){
+                            value2=j+2;
+                        }else if(j<12){
+                            value2=10;
+                        }else{
+                            value2=1;  
+                        }
+                    }else{
+                        value2=j+2;
+                    }
 
                     //Assign colors
                     switch (h) {
@@ -86,7 +114,7 @@ public class Deck {
                     image = Card.IMAGESOURCE + color + " " + number + Card.IMAGEEXTENSION;
 
                     //Generate card and add it to the cardsInDeck (given in the parameter) ArrayList
-                    this.cardsInDeck.add(new Card(color, number, j + 2, value2, image));
+                    this.cardsInDeck.add(new Card(color, number, value1, value2, image));
                 }
             }
         }

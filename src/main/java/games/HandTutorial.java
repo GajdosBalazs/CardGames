@@ -364,7 +364,7 @@ public class HandTutorial {
             String yourHand = "Your hand is: ";
             String cards = "";
             Deck deck = new Deck();
-            deck.fillCardsInDeck(nrDecks);
+            deck.fillCardsInDeck(nrDecks, "poker");
             hand = new Hand();
             hand.dealer(deck, 5);
             for (Card card : hand.getCardsInHand()) {
